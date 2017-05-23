@@ -314,7 +314,7 @@ open class EventSource: NSObject, URLSessionDataDelegate {
     fileprivate func parseEvent(_ eventString: String) -> (id: String?, event: String?, data: String?) {
         var event = Dictionary<String, String>()
 
-        for line in eventString.components(separatedBy: CharacterSet.newlines) as [String] {
+        for line in eventString.components(separatedBy: CharacterSet(charactersIn: validNewlineCharacters.joined())) as [String] {
             autoreleasepool {
                 let (key, value) = self.parseKeyValuePair(line)
 
